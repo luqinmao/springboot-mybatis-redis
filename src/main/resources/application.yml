@@ -1,0 +1,59 @@
+# 项目服务器配置（默认是下面的，不写也行）
+server:
+  port: 8080
+  context-path: /
+
+
+spring:
+  application:
+    name: springboot-mybatis-redis
+
+  datasource: # 数据库连接
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/demo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    tomcat:
+      max-active: 150
+      max-idle: 50
+      min-idle: 10
+      initial-size: 10
+      time-between-eviction-runs-millis: 30000
+      min-evictable-idle-time-millis: 60000
+      
+  redis: # redis配置
+    host: 127.0.0.1  
+#   password:
+    port: 6379
+    timeout: 20000
+    pool:
+      max-active: 8
+      max-idle: 8
+      min-idle: 0
+      max-wait: -1
+
+
+# mybatis配置
+mybatis:
+  # 自动扫描
+  type-aliases-package: com.youjiang.spirngboot.po,com.youjiang.spirngboot.pojo
+  configuration:
+    # 打开延迟加载 的开关
+    lazy-loading-enabled: true
+    # 将积极加载改为消极加载即按需要加载
+    aggressive-lazy-loading: false
+    # 开启二级缓存
+    cache-enabled: true
+    # 支持驼峰命名法
+    map-underscore-to-camel-case: true
+    
+    
+    
+# 日志配置
+logging:
+  config: classpath:log4j2.xml
+  
+# 自定义参数
+kwum: 
+  look: cool
+  height: 1.89
